@@ -67,6 +67,7 @@
     .tagline { color: var(--muted); margin: 0 0 24px; }
     h1 { font-size: 2rem; margin: 0 0 8px; }
     h2 { font-size: 1.2rem; margin: 32px 0 8px; color: var(--accent); }
+    h3 { font-size: 1.05rem; margin: 24px 0 6px; }
     .updated { color: var(--muted); margin: 0 0 24px; }
     .intro {
       background: var(--bg);
@@ -119,70 +120,105 @@
   <!-- PRIVACY POLICY -->
   <section class="card" id="privacy">
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: October 4, 2026</p>
+    <p class="updated">Last updated: November 13, 2026</p>
 
     <div class="intro">
-      <strong>PumpToUnlock is built with privacy in mind.</strong><br>
-      We do not collect, store, or share your personal data. All core functions run on your device.
+      <strong>PumpToUnlock works without an account, and we never ask for your name or email.</strong><br>
+      The camera picture that counts your push-ups is processed on your iPhone and is never uploaded. The app does send some data to services we use, stored under a random ID: how you use the app, your push-up numbers and your purchases. This page lists all of it.
     </div>
 
-    <h2>1. Overview</h2>
-    <p>PumpToUnlock ("we", "our", or "us") respects your privacy. This Privacy Policy explains how information is handled when you use the PumpToUnlock mobile application.</p>
+    <h2>1. Who is responsible</h2>
+    <p>PumpToUnlock is made and run by El Mahdi Chaker, the seller named on the App Store. For any privacy question or request, write to <a href="mailto:pumptounlock@gmail.com">pumptounlock@gmail.com</a>.</p>
+
+    <h2>2. In short</h2>
     <ul>
-      <li>No account required. You start right away.</li>
-      <li>No personal data collected by us</li>
-      <li>No data stored on our servers</li>
-      <li>No analytics, advertising, or tracking</li>
-      <li>No data sold or shared</li>
+      <li>You need no account. We do not ask for your name, email address or phone number.</li>
+      <li>The app shows no ads. We do not sell your data, we do not give it to advertisers or data brokers, and we do not track you across other apps or websites.</li>
+      <li>Pictures from the camera never leave your iPhone.</li>
+      <li>We cannot see which apps you block or how long you use them.</li>
+      <li>The app sends usage data, push-up numbers and purchase records to the service providers named in section 4, under a random ID.</li>
     </ul>
 
-    <h2>2. Information Stored on Your Device</h2>
-    <p>The app stores the following data locally on your device:</p>
+    <h2>3. Your random ID</h2>
+    <p>When you first open the app, it gets random IDs for this installation: one for our database and analytics, and one from our purchase provider. An ID looks like 3f2a9c1e-7b4d and says nothing about who you are. Our purchase provider also receives Apple's vendor identifier for your iPhone. That is an ID Apple gives to the apps of one developer on a device. It is not the advertising ID.</p>
+    <p>Everything in section 4 is stored under these IDs, never under your name. If you delete the app and install it again, you get new random IDs.</p>
+
+    <h2>4. What the app sends, and who receives it</h2>
+
+    <h3>Usage analytics: Mixpanel</h3>
+    <p>Mixpanel, Inc. in the United States runs our analytics. The app sends:</p>
     <ul>
-      <li>Your selection of apps to block</li>
-      <li>Your intensity settings (push-ups and earned minutes)</li>
-      <li>Your minute bank balance and push-up progress</li>
+      <li>Which screens you open and how long you stay on them, and when you open and close the app.</li>
+      <li>What you do in the app, such as the onboarding steps you finish, the push-up sessions you start and end, changes to your blocked apps, the minutes you spend, the badges you earn or share, the reminders you turn on and what you tap on the paywall.</li>
+      <li>The numbers that belong to these actions: push-ups counted, minutes earned, session length, your intensity setting, your minute balance, and how many apps and categories you block. Never which apps.</li>
+      <li>Purchases: the plan you chose, its price and currency, and later changes such as a renewal or a cancellation.</li>
+      <li>Your iPhone model, iOS version, app version, screen size and whether you are on Wi-Fi.</li>
+      <li>Your approximate location: city, region and country. Mixpanel works this out from the IP address of your connection and does not store the IP address itself.</li>
     </ul>
-    <p>This data stays on your device. Deleting the app removes all stored data.</p>
+    <p>We use this to see whether the app works, where people get stuck and which features are used. Mixpanel deletes events after two years. A profile with running totals under your random ID, for example push-ups done, stays until we delete it.</p>
 
-    <h2>3. Camera Usage and Push-Up Detection</h2>
-    <p>PumpToUnlock uses your front camera to count push-ups.</p>
+    <h3>Push-up sessions and settings: Supabase</h3>
+    <p>Our database runs at Supabase, on servers in Ireland. The app sends:</p>
     <ul>
-      <li>We use Google ML Kit Pose Detection to detect your body posture. On top of this, we apply our own tracking logic for accurate push-up counting.</li>
-      <li>All image processing happens in real time on your device.</li>
-      <li>We do not record, store, or upload photos or videos.</li>
-      <li>No camera images leave your device.</li>
+      <li>After each push-up session: the number of push-ups, the minutes earned and the time of the session.</li>
+      <li>Your intensity setting and your minute balance.</li>
     </ul>
-    <p>You control camera access anytime in your device settings.</p>
+    <p>Supabase's sign-in service also records the IP address your iPhone connected from.</p>
+    <p>We use this to keep a copy of your settings and to see overall numbers, such as how many push-ups are done with the app. This data stays until we delete it. There is no automatic deletion.</p>
 
-    <h2>4. Google ML Kit</h2>
-    <p>Pose detection runs on your device through Google ML Kit. According to Google, the ML Kit SDK sends limited technical data to Google for diagnostics and performance, such as device model, operating system version, and performance metrics. This data contains no camera images and no personal content.</p>
-    <p>More information: <a href="https://developers.google.com/ml-kit/android-data-disclosure" target="_blank" rel="noopener">ML Kit data disclosure</a> and <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.</p>
-
-    <h2>5. Screen Time and App Blocking</h2>
-    <p>PumpToUnlock uses Apple's Screen Time framework to block the apps you select.</p>
+    <h3>Trials and purchases: RevenueCat</h3>
+    <p>RevenueCat, Inc. in the United States manages trials and purchases for us. The app sends:</p>
     <ul>
-      <li>Apple handles your app selection through protected tokens. We do not see which apps you use or how long you use them.</li>
-      <li>All Screen Time data stays on your device and is managed by Apple.</li>
+      <li>For every installation: a random customer ID, Apple's vendor identifier, your iPhone model, iOS version, app version, language and App Store country.</li>
+      <li>When a paywall is shown and when it is closed.</li>
+      <li>If you start a trial or buy Elite: the product, price, currency and dates, and later renewals and cancellations, as confirmed by Apple.</li>
     </ul>
+    <p>We use this to unlock Elite on your iPhone, to restore purchases and to see how our plans perform. Payment itself runs through Apple. We never see your card or your Apple Account. RevenueCat keeps this data for as long as we use the service, or until you ask us to delete it.</p>
 
-    <h2>6. Data Sharing</h2>
-    <p>We do not sell, rent, or share your personal data. We have no access to your data.</p>
+    <h3>Diagnostics of the push-up counter: Google ML Kit</h3>
+    <p>The software that finds your posture in the camera picture is Google's ML Kit. It runs on your iPhone. According to Google, it sends technical data to Google LLC in the United States for diagnostics and usage analytics: device model, iOS version, the app's ID and version, an ID for the installation, performance figures such as speed, settings such as picture format and size, which functions ran, and error codes. Pictures are not on that list. We do not receive this data.</p>
+    <p>More information: <a href="https://developers.google.com/ml-kit/ios-data-disclosure" target="_blank" rel="noopener">ML Kit data disclosure for iOS</a> and <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.</p>
 
-    <h2>7. Data Retention and Deletion</h2>
+    <h3>Apple</h3>
+    <p>Purchases run through the App Store, and Apple's privacy policy applies to them. The app also asks Apple's public App Store service which version is current, so it can tell you about an update. That request carries the app's ID and a country code, and nothing about you.</p>
+
+    <h3>When you write to us</h3>
+    <p>If you send us an email, we receive your email address and what you write. We use it only to answer you.</p>
+
+    <h2>5. What stays on your iPhone</h2>
     <ul>
-      <li>All app data remains on your device.</li>
-      <li>Deleting the app removes all stored data.</li>
+      <li><strong>The live camera picture.</strong> It is analysed on your iPhone to count push-ups. No video is recorded, and nothing from the camera is uploaded.</li>
+      <li><strong>One still picture for each badge.</strong> The first time you reach a badge, the app keeps one still picture from the camera for your badge picture. It stays in the app's storage on your iPhone, and in your own iPhone backup if you use one. It leaves your iPhone only when you share it yourself.</li>
+      <li><strong>A photo you pick for a badge picture.</strong> It stays on your iPhone until you share it.</li>
+      <li><strong>The apps you block and your Screen Time data.</strong> Apple's Screen Time system handles your selection through protected tokens, and the screen time figures in Insights are worked out on your iPhone. We cannot see which apps you block or use, or for how long.</li>
+      <li><strong>Your onboarding answers and your reminders.</strong> Your goals and your estimate of daily phone time stay on your iPhone. Reminders are planned on your iPhone. We send no push messages from a server.</li>
     </ul>
+    <p>Deleting the app removes all of this.</p>
 
-    <h2>8. Your Rights</h2>
-    <p>Under the GDPR and other privacy laws, you have the right to access, correct, and delete your personal data. Because we do not collect personal data, we hold no data about you. For questions, use the contact details below.</p>
+    <h2>6. Legal grounds and transfers</h2>
+    <p>If you are in the European Union or the United Kingdom, these are the legal grounds under the GDPR:</p>
+    <ul>
+      <li>Keeping your settings and handling trials and purchases is needed to provide the app (Article 6(1)(b)).</li>
+      <li>Analytics and diagnostics rest on our legitimate interest in knowing whether the app works and how it is used (Article 6(1)(f)). You can object at any time by writing to us.</li>
+    </ul>
+    <p>Mixpanel, RevenueCat and Google process data in the United States. These transfers rely on the EU-US Data Privacy Framework or on the EU's standard contractual clauses.</p>
+    <p>The app has no switch to turn analytics off. Deleting the app stops all collection.</p>
 
-    <h2>9. Children's Privacy</h2>
-    <p>PumpToUnlock does not collect data from any user, including children.</p>
+    <h2>7. Your rights, and how to delete your data</h2>
+    <p>You have the right to see the data we hold about you, to have it corrected or deleted, to restrict or object to its use, and to receive a copy of it. You can also complain to your data protection authority.</p>
+    <p>Write to <a href="mailto:pumptounlock@gmail.com">pumptounlock@gmail.com</a>. Because your data is stored under a random ID and not under your name, we need a way to find it:</p>
+    <ul>
+      <li>If you started a trial or bought Elite, send us the order number from Apple's receipt email. We find your record with it and delete your purchase record, your analytics data and your database entries within 30 days. At our analytics provider the deletion can take a few weeks longer to complete. Deleting the record does not cancel a subscription. You cancel that in your App Store settings.</li>
+      <li>If you never started a trial or bought anything, nothing in our records tells us which ones are yours, so we cannot find them on request. They are not connected to your name, your email or your Apple Account.</li>
+    </ul>
+    <p>Deleting the app removes everything stored on your iPhone and stops all further collection.</p>
 
-    <h2>10. Changes to This Policy</h2>
-    <p>We update this Privacy Policy when our practices change. The date at the top of this section shows the latest version.</p>
+    <h2>8. Children</h2>
+    <p>We do not ask for anyone's age, and the app handles data the same way for every user. If you are a parent or guardian and have a question about your child's data, write to us.</p>
+
+    <h2>9. Changes to this policy</h2>
+    <p>We update this policy when what the app does changes. The date at the top shows the latest version.</p>
+    <p>November 13, 2026: this policy now lists the analytics, database and purchase services the app uses. Earlier versions did not mention them.</p>
 
   </section>
 
