@@ -1,0 +1,301 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import AppStoreBadge from '../components/AppStoreBadge.astro';
+import Faq from '../components/Faq.astro';
+import { faq, site } from '../data/site';
+
+const title = 'PumpToUnlock | Your apps stay locked until you do push-ups';
+const description =
+  'PumpToUnlock is an iPhone app that keeps the apps you pick locked until you do push-ups. Your camera counts every rep. Free to download.';
+
+// Pictures are exported from Figma with their shadows. x, y and w place the picture
+// so the phone itself sits exactly where the design has it.
+const steps = [
+  {
+    title: 'Block distracting apps',
+    text: 'Choose the apps that eat your time.',
+    img: 'step-1',
+    sizes: [668, 1002],
+    px: [1002, 1794],
+    alt: 'The PumpToUnlock home screen with the list of blocked apps.',
+    h: 513.36,
+    x: -43.65,
+    y: -22.32,
+    w: 333.81,
+  },
+  {
+    title: 'Do push-ups to unlock',
+    text: 'Your camera counts every rep.',
+    img: 'step-2',
+    sizes: [687, 1031],
+    px: [1031, 1823],
+    alt: 'The PumpToUnlock camera screen counting push-ups.',
+    h: 513.91,
+    x: -48.5,
+    y: -24.8,
+    w: 343.34,
+  },
+  {
+    title: 'Earn screen time',
+    text: 'You set how many push-ups a minute costs.',
+    img: 'step-3',
+    sizes: [691, 1037],
+    px: [1037, 1828],
+    alt: 'The PumpToUnlock home screen with the minutes earned today.',
+    h: 513.19,
+    x: -49.6,
+    y: -25.36,
+    w: 345.51,
+  },
+];
+
+const cards = [
+  {
+    title: ['Scrolling', 'has a price'],
+    text: 'Every minute costs push‑ups. You set how many.',
+    elite: false,
+    pic: { img: 'receipt', sizes: [478, 718], x: 11.2, y: 237.2, w: 239.22, alt: 'A receipt from the scroll bank.' },
+  },
+  {
+    title: ['Where your', 'time goes'],
+    text: 'Screen time and push‑ups, by day, week and month.',
+    elite: true,
+    pic: { img: 'insights-phone', sizes: [544, 817], x: -5.67, y: 243.25, w: 272.08, alt: 'The Insights screen.' },
+  },
+  {
+    title: ['From Rookie', 'to Emperor'],
+    text: 'Each of the 12 badges asks for more push‑ups in one day.',
+    elite: true,
+    pic: { img: 'rank-icons', sizes: [428, 642], x: 24, y: 326, w: 214, alt: 'The icons of the 12 badges.' },
+  },
+  {
+    title: ['Share every', 'badge'],
+    text: 'Each one comes as a picture with your numbers on it.',
+    elite: false,
+    pic: { img: 'share-badge', sizes: [409, 614], x: 28.78, y: 197.65, w: 204.47, alt: 'A badge picture ready to share.' },
+  },
+];
+
+const facts = [
+  { icon: 'fact-no-name', text: 'We never ask for your name or email.' },
+  {
+    icon: 'fact-camera-off',
+    text: 'The camera picture that counts your push-ups is processed on your iPhone and is never uploaded.',
+  },
+  { icon: 'fact-eye-off', text: 'We cannot see which apps you block.' },
+];
+
+const questions = [faq.account, faq.camera, faq.apps, faq.intensity, faq.cancel, faq.android];
+
+const srcset = (img: string, sizes: number[]) => sizes.map((s) => `/img/${img}-${s}.webp ${s}w`).join(', ');
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: site.name,
+    url: site.url,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'MobileApplication',
+    name: site.name,
+    operatingSystem: 'iOS 16 or later',
+    description,
+    url: site.url,
+    downloadUrl: site.appStoreUrl,
+    image: `${site.url}/icon-512.png`,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: questions.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  },
+];
+---
+
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <Fragment slot="head">
+    {/* Old links from the app, the paywalls and the App Store keep working. */}
+    <script is:inline>
+      (function () {
+        var h = location.hash;
+        if (h === '#privacy') location.replace('/privacy/');
+        else if (h === '#contact') location.replace('/support/');
+      })();
+    </script>
+    <link
+      rel="preload"
+      as="image"
+      href="/img/hero-phone-2001.webp"
+      imagesrcset={srcset('hero-phone', [1000, 2001])}
+      imagesizes="1000px"
+      media="(min-width: 900px)"
+    />
+  </Fragment>
+
+  <header class="top top--home grid-bg">
+    <Nav />
+    <div class="hero wrap">
+      <div class="hero__words">
+        <h1 class="headline t-display">
+          <span>Can’t stop</span>
+          <span class="tape">scrolling?</span>
+        </h1>
+        <p class="t-lead">Your apps stay locked<br />until you do push-ups.</p>
+        <div class="download">
+          <div class="download__row">
+            <AppStoreBadge />
+            <img
+              class="download__wreath"
+              src="/img/wreath-386.webp"
+              srcset={srcset('wreath', [386, 771])}
+              sizes="193px"
+              width="193"
+              height="164"
+              alt="Loved by 1,000+ people"
+            />
+          </div>
+          <p class="t-small">{site.downloadLine}</p>
+        </div>
+      </div>
+      <img
+        class="hero__phone"
+        src="/img/hero-phone-2001.webp"
+        srcset={srcset('hero-phone', [1000, 2001])}
+        sizes="1000px"
+        width="2001"
+        height="1488"
+        alt="An iPhone showing the PumpToUnlock lock screen over a blocked app."
+      />
+    </div>
+    <div class="hero__phone-m">
+      <img
+        src="/img/hero-phone-mobile-1193.webp"
+        srcset={srcset('hero-phone-mobile', [1193, 1790])}
+        sizes="597px"
+        width="1790"
+        height="1332"
+        loading="lazy"
+        alt="An iPhone showing the PumpToUnlock lock screen over a blocked app."
+      />
+    </div>
+  </header>
+
+  <main>
+    <section class="block wrap" id="how-it-works">
+      <h2 class="t-h2">How it works</h2>
+      <ol class="steps">
+        {
+          steps.map((step, i) => (
+            <li class="step">
+              <div class="step__phone" style={`--h:${step.h}px;--x:${step.x}px;--y:${step.y}px;--w:${step.w}px`}>
+                <img
+                  src={`/img/${step.img}-${step.sizes[0]}.webp`}
+                  srcset={srcset(step.img, step.sizes)}
+                  sizes="345px"
+                  width={step.px[0]}
+                  height={step.px[1]}
+                  loading="lazy"
+                  alt={step.alt}
+                />
+              </div>
+              <div class="step__caption">
+                <span class="step__number t-number" aria-hidden="true">
+                  {i + 1}
+                </span>
+                <div class="step__words">
+                  <h3 class="t-title">{step.title}</h3>
+                  <p class="t-body">{step.text}</p>
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="block wrap section-deep">
+      <h2 class="t-h2">What you get</h2>
+      <ul class="cards">
+        {
+          cards.map((card) => (
+            <li class="card">
+              <h3 class="t-card-title">
+                {card.title[0]}
+                <br />
+                {card.title[1]}
+              </h3>
+              <p class="t-body">{card.text}</p>
+              {card.elite && <p class="t-label card__elite">Elite</p>}
+              <img
+                class="card__pic"
+                style={`--x:${card.pic.x}px;--y:${card.pic.y}px;--w:${card.pic.w}px`}
+                src={`/img/${card.pic.img}-${card.pic.sizes[0]}.webp`}
+                srcset={srcset(card.pic.img, card.pic.sizes)}
+                sizes={`${Math.ceil(card.pic.w)}px`}
+                loading="lazy"
+                alt={card.pic.alt}
+              />
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="block wrap review">
+      <div class="stars" role="img" aria-label="5 stars">
+        {[1, 2, 3, 4, 5].map(() => <img src="/icons/star.svg" width="20" height="20" alt="" />)}
+      </div>
+      <blockquote class="t-lead review__quote">{site.review.quote}</blockquote>
+      <p class="t-small">{site.review.by}</p>
+    </section>
+
+    <section class="wrap privacy">
+      <div class="privacy__heading">
+        <h2 class="t-h2">It works without an account</h2>
+        <a class="t-label link privacy__link--desktop" href="/privacy/">Privacy Policy</a>
+      </div>
+      <ul class="privacy__facts">
+        {
+          facts.map((fact) => (
+            <li class="fact">
+              <img src={`/icons/${fact.icon}.svg`} width="24" height="25" alt="" />
+              <span class="t-body">{fact.text}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <a class="t-label link privacy__link--mobile" href="/privacy/">Privacy Policy</a>
+    </section>
+
+    <section class="wrap questions">
+      <h2 class="t-h2">Questions</h2>
+      <div class="questions__list">
+        {questions.map((item, i) => <Faq q={item.q} a={item.a} open={i === 0} />)}
+      </div>
+    </section>
+
+    <section class="closing grid-bg">
+      <img
+        class="closing__icon"
+        src="/img/app-icon-176.webp"
+        srcset="/img/app-icon-176.webp 176w, /img/app-icon-352.webp 352w"
+        sizes="88px"
+        width="88"
+        height="88"
+        loading="lazy"
+        alt=""
+      />
+      <p class="t-h2 closing__tagline">
+        Do push-ups. <span class="m-br"></span>Earn minutes.<br />Unlock your apps.
+      </p>
+      <AppStoreBadge />
+    </section>
+  </main>
+</Base>

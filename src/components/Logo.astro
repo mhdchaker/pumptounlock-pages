@@ -1,0 +1,15 @@
+---
+import { site } from '../data/site';
+---
+
+<a class="logo" href="/" aria-label={`${site.name}, home`}>
+  <img
+    src="/img/app-icon-176.webp"
+    srcset="/img/app-icon-176.webp 176w, /img/app-icon-352.webp 352w"
+    sizes="32px"
+    width="32"
+    height="32"
+    alt=""
+  />
+  <span class="t-wordmark">{site.name}</span>
+</a>

@@ -1,0 +1,37 @@
+---
+import Nav from './Nav.astro';
+
+interface Props {
+  title: string;
+  sub?: string;
+  /** A line above `sub`, used for an article's author. */
+  byline?: string;
+  back?: { href: string; label: string };
+}
+const { title, sub, byline, back } = Astro.props;
+---
+
+<header class="top grid-bg">
+  <Nav />
+  <div class="page-title wrap">
+    {
+      back && (
+        <a class="back t-label" href={back.href}>
+          <img src="/icons/chevron-left.svg" width="16" height="16" alt="" />
+          {back.label}
+        </a>
+      )
+    }
+    <h1 class="t-h2">{title}</h1>
+    {
+      byline ? (
+        <div class="page-title__meta">
+          <p class="t-body ink">{byline}</p>
+          {sub && <p class="t-body">{sub}</p>}
+        </div>
+      ) : (
+        sub && <p class="page-title__sub t-body">{sub}</p>
+      )
+    }
+  </div>
+</header>

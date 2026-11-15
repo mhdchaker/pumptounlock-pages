@@ -1,0 +1,37 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageTop from '../../components/PageTop.astro';
+import { getPosts, shortDate } from '../../data/posts';
+
+const posts = await getPosts();
+// Until the first article is published there is no blog page to show.
+if (posts.length === 0) return Astro.redirect('/');
+
+const sub = 'Notes on screen time, push-ups and how the app works.';
+---
+
+<Base title="Blog | PumpToUnlock" description={sub}>
+  <PageTop title="Blog" sub={sub} />
+  <main class="content wrap">
+    <ul>
+      {
+        posts.map((post) => (
+          <li class="entry">
+            <time class="entry__date t-small" datetime={post.data.date.toISOString().slice(0, 10)}>
+              {shortDate(post.data.date)}
+            </time>
+            <div class="entry__words">
+              <h2 class="t-title">
+                <a class="entry__link" href={`/blog/${post.id}/`}>
+                  {post.data.title}
+                </a>
+              </h2>
+              <p class="t-body">{post.data.listLine ?? post.data.description}</p>
+            </div>
+            <img class="entry__arrow" src="/icons/arrow-right.svg" width="16" height="20" alt="" />
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</Base>

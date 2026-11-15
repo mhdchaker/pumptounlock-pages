@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import PageTop from '../components/PageTop.astro';
+import body from '../content/legal/privacy-body.html?raw';
+import meta from '../content/legal/privacy-meta.json';
+
+// The policy text lives in src/content/legal and is shown unchanged.
+const [introLead, introRest] = meta.intro.split('<br>');
+const lead = introLead.replace(/<\/?strong>/g, '').trim();
+const rest = (introRest ?? '').trim();
+---
+
+<Base
+  title="Privacy Policy | PumpToUnlock"
+  description="What PumpToUnlock sends, who receives it and what stays on your iPhone. The app works without an account."
+>
+  <PageTop title="Privacy Policy" sub={meta.updated} />
+  <main class="content wrap">
+    <div class="columns">
+      <nav class="toc" aria-label="On this page">
+        <p class="t-label ink">On this page</p>
+        {meta.toc.map((item) => <a class="t-nav" href={`#section-${item.n}`}>{item.title}</a>)}
+      </nav>
+      <div class="prose">
+        <div class="intro-card">
+          <p class="t-question">{lead}</p>
+          <p class="t-body">{rest}</p>
+        </div>
+        <Fragment set:html={body} />
+      </div>
+    </div>
+  </main>
+</Base>
