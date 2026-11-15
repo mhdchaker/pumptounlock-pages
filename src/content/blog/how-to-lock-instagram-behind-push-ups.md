@@ -22,8 +22,10 @@ An iPhone with iOS 16 or later and the PumpToUnlock app. You need no account.
 
 <figure>
   <picture>
-    <source media="(max-width: 899px)" srcset="/img/article-two-phones-mobile-700.webp 700w, /img/article-two-phones-mobile-1050.webp 1050w" sizes="100vw" />
-    <img src="/img/article-two-phones-1440.webp" srcset="/img/article-two-phones-720.webp 720w, /img/article-two-phones-1440.webp 1440w" sizes="720px" width="1440" height="1072" loading="lazy" alt="Two iPhones: the list of blocked apps, and the camera counting push-ups." />
+    <source media="(max-width: 899px)" type="image/avif" srcset="/img/article-two-phones-mobile-700.avif 700w, /img/article-two-phones-mobile-1050.avif 1050w" sizes="calc(100vw - 40px)" />
+    <source media="(max-width: 899px)" srcset="/img/article-two-phones-mobile-700.webp 700w, /img/article-two-phones-mobile-1050.webp 1050w" sizes="calc(100vw - 40px)" />
+    <source type="image/avif" srcset="/img/article-two-phones-720.avif 720w, /img/article-two-phones-1440.avif 1440w" sizes="720px" />
+    <img src="/img/article-two-phones-1440.webp" srcset="/img/article-two-phones-720.webp 720w, /img/article-two-phones-1440.webp 1440w" sizes="720px" width="1440" height="1072" loading="lazy" decoding="async" alt="Two iPhones: the list of blocked apps, and the camera counting push-ups." />
   </picture>
   <figcaption>Left, the blocked apps. Right, the camera counting push-ups.</figcaption>
 </figure>

@@ -67,6 +67,13 @@ img,
 svg {
   display: block;
 }
+/* A picture element only offers formats; the image inside is laid out as if it stood alone. */
+picture {
+  display: contents;
+}
+picture > source {
+  display: none;
+}
 
 h1,
 h2,
@@ -469,8 +476,8 @@ button {
   height: auto;
   pointer-events: none;
 }
-.hero__phone-m {
-  display: none;
+.hero__art {
+  display: contents;
 }
 
 /* ---------- Home: sections ---------- */
@@ -1131,23 +1138,18 @@ main {
   .download__wreath {
     width: 154.14px;
   }
-  .hero__phone {
-    display: none;
-  }
-  .hero__phone-m {
+  /* On a phone the picture stands under the words, 322 high, centred, and may reach past the sides. */
+  .hero__art {
     display: block;
     position: relative;
     height: 322px;
     margin-inline: -20px;
     pointer-events: none;
   }
-  .hero__phone-m img {
-    position: absolute;
+  .hero__phone {
     left: 50%;
     top: -60.68px;
     width: 596.61px;
-    max-width: none;
-    height: auto;
     transform: translateX(-50%);
   }
 

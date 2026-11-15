@@ -36,6 +36,15 @@ A table in an article becomes a comparison table: a grid on wide screens, one bl
 row on a phone (the column names become the labels). The row whose first cell says
 PumpToUnlock is the white one. Pictures for articles go into `public/img/blog/`.
 
+## Pictures
+
+Every picture is served in two formats: AVIF (about a third of the weight, for current
+browsers) and WebP (for older ones), each at two widths. Make them from the original with
+`node scripts/make-picture.mjs source.png name 720 1440` (add `--dir blog` for an article)
+and show them with the `Pic` component. The width hint (`sizes`) must not be larger than the
+width the picture is shown at, or screens fetch the bigger file. Every picture that shows
+something gets an alt text that says what is on it; icons that only decorate keep an empty one.
+
 ## Working on the site
 
 ```bash

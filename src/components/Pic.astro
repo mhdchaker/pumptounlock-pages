@@ -1,0 +1,37 @@
+---
+// A picture in two formats: AVIF for current browsers (about a third of the weight),
+// WebP for older ones. Files are made with scripts/make-picture.mjs.
+interface Props {
+  /** File name without width and extension, e.g. "step-1". */
+  name: string;
+  widths: number[];
+  /** The width the picture is shown at, e.g. "345px". */
+  sizes: string;
+  alt: string;
+  class?: string;
+  style?: string;
+  width?: number;
+  height?: number;
+  /** false for pictures on the first screen. */
+  lazy?: boolean;
+  dir?: string;
+}
+const { name, widths, sizes, alt, class: cls, style, width, height, lazy = true, dir = '/img' } = Astro.props;
+const set = (ext: string) => widths.map((w) => `${dir}/${name}-${w}.${ext} ${w}w`).join(', ');
+---
+
+<picture>
+  <source type="image/avif" srcset={set('avif')} sizes={sizes} />
+  <img
+    class={cls}
+    style={style}
+    src={`${dir}/${name}-${widths[0]}.webp`}
+    srcset={set('webp')}
+    sizes={sizes}
+    width={width}
+    height={height}
+    alt={alt}
+    loading={lazy ? 'lazy' : 'eager'}
+    decoding="async"
+  />
+</picture>
