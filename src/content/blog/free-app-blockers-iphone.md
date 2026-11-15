@@ -127,8 +127,10 @@ The elbow angle alone would also count someone who stands in front of the phone 
 
 <figure>
   <picture>
-    <source media="(max-width: 899px)" srcset="/img/blog/pumptounlock-scroll-bank-and-push-up-camera-phone-700.webp 700w, /img/blog/pumptounlock-scroll-bank-and-push-up-camera-phone-1050.webp 1050w" sizes="100vw" />
-    <img src="/img/blog/pumptounlock-scroll-bank-and-push-up-camera-1440.webp" srcset="/img/blog/pumptounlock-scroll-bank-and-push-up-camera-720.webp 720w, /img/blog/pumptounlock-scroll-bank-and-push-up-camera-1440.webp 1440w" sizes="720px" width="1440" height="1072" loading="lazy" alt="Two iPhones with PumpToUnlock: the Home screen showing 120 minutes in the scroll bank, and the camera screen counting a push-up." />
+    <source media="(max-width: 899px)" type="image/avif" srcset="/img/blog/pumptounlock-scroll-bank-and-push-up-camera-phone-700.avif 700w, /img/blog/pumptounlock-scroll-bank-and-push-up-camera-phone-1050.avif 1050w" sizes="calc(100vw - 40px)" />
+    <source media="(max-width: 899px)" srcset="/img/blog/pumptounlock-scroll-bank-and-push-up-camera-phone-700.webp 700w, /img/blog/pumptounlock-scroll-bank-and-push-up-camera-phone-1050.webp 1050w" sizes="calc(100vw - 40px)" />
+    <source type="image/avif" srcset="/img/blog/pumptounlock-scroll-bank-and-push-up-camera-720.avif 720w, /img/blog/pumptounlock-scroll-bank-and-push-up-camera-1440.avif 1440w" sizes="720px" />
+    <img src="/img/blog/pumptounlock-scroll-bank-and-push-up-camera-1440.webp" srcset="/img/blog/pumptounlock-scroll-bank-and-push-up-camera-720.webp 720w, /img/blog/pumptounlock-scroll-bank-and-push-up-camera-1440.webp 1440w" sizes="720px" width="1440" height="1072" loading="lazy" decoding="async" alt="Two iPhones with PumpToUnlock: the Home screen showing 120 minutes in the scroll bank, and the camera screen counting a push-up." />
   </picture>
   <figcaption>Left, the scroll bank on Home. Right, the camera counting a push-up.</figcaption>
 </figure>

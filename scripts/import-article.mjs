@@ -37,10 +37,15 @@ if (picture) {
     const caption = (slot.match(/Caption:\s*"([^"]+)"/) ?? [])[1] ?? '';
     const file = (suffix) => `/img/blog/${picture.base}${suffix}.webp`;
     pictureUsed = true;
+    const set = (suffixes, ext) => suffixes.map(([suffix, w]) => `/img/blog/${picture.base}${suffix}.${ext} ${w}w`).join(', ');
+    const phone = [['-phone-700', 700], ['-phone-1050', 1050]];
+    const wide = [['-720', 720], ['-1440', 1440]];
     return `<figure>
   <picture>
-    <source media="(max-width: 899px)" srcset="${file('-phone-700')} 700w, ${file('-phone-1050')} 1050w" sizes="100vw" />
-    <img src="${file('-1440')}" srcset="${file('-720')} 720w, ${file('-1440')} 1440w" sizes="720px" width="${picture.width}" height="${picture.height}" loading="lazy" alt="${picture.alt}" />
+    <source media="(max-width: 899px)" type="image/avif" srcset="${set(phone, 'avif')}" sizes="calc(100vw - 40px)" />
+    <source media="(max-width: 899px)" srcset="${set(phone, 'webp')}" sizes="calc(100vw - 40px)" />
+    <source type="image/avif" srcset="${set(wide, 'avif')}" sizes="720px" />
+    <img src="${file('-1440')}" srcset="${set(wide, 'webp')}" sizes="720px" width="${picture.width}" height="${picture.height}" loading="lazy" decoding="async" alt="${picture.alt}" />
   </picture>
   <figcaption>${caption}</figcaption>
 </figure>`;

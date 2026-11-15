@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import AppStoreBadge from '../components/AppStoreBadge.astro';
 import Faq from '../components/Faq.astro';
+import Pic from '../components/Pic.astro';
 import { faq, site } from '../data/site';
 
 const title = 'PumpToUnlock | Your apps stay locked until you do push-ups';
@@ -18,7 +19,7 @@ const steps = [
     img: 'step-1',
     sizes: [668, 1002],
     px: [1002, 1794],
-    alt: 'The PumpToUnlock home screen with the list of blocked apps.',
+    alt: 'PumpToUnlock’s list of blocked apps: TikTok, Instagram, YouTube, Snapchat and Facebook.',
     h: 513.36,
     x: -43.65,
     y: -22.32,
@@ -30,7 +31,7 @@ const steps = [
     img: 'step-2',
     sizes: [687, 1031],
     px: [1031, 1823],
-    alt: 'The PumpToUnlock camera screen counting push-ups.',
+    alt: 'PumpToUnlock’s camera screen counting push-ups: 6 counted, with a man in push-up position.',
     h: 513.91,
     x: -48.5,
     y: -24.8,
@@ -42,7 +43,7 @@ const steps = [
     img: 'step-3',
     sizes: [691, 1037],
     px: [1037, 1828],
-    alt: 'The PumpToUnlock home screen with the minutes earned today.',
+    alt: 'PumpToUnlock’s Home screen: 120 minutes in the scroll bank, 42 push-ups and 21 minutes earned today.',
     h: 513.19,
     x: -49.6,
     y: -25.36,
@@ -55,25 +56,25 @@ const cards = [
     title: ['Scrolling', 'has a price'],
     text: 'Every minute costs push‑ups. You set how many.',
     elite: false,
-    pic: { img: 'receipt', sizes: [478, 718], x: 11.2, y: 237.2, w: 239.22, alt: 'A receipt from the scroll bank.' },
+    pic: { img: 'receipt', sizes: [478, 718], x: 11.2, y: 237.2, w: 239.22, alt: 'A receipt from the scroll bank: 42 push-ups at 2 push-ups a minute earn 21 minutes, balance 120 minutes.' },
   },
   {
     title: ['Where your', 'time goes'],
     text: 'Screen time and push‑ups, by day, week and month.',
     elite: true,
-    pic: { img: 'insights-phone', sizes: [544, 817], x: -5.67, y: 243.25, w: 272.08, alt: 'The Insights screen.' },
+    pic: { img: 'insights-phone', sizes: [544, 817], x: -5.67, y: 243.25, w: 272.08, alt: 'The Insights screen for one week: 412 push-ups, 206 minutes earned and 21 hours 40 minutes of screen time.' },
   },
   {
     title: ['From Rookie', 'to Emperor'],
     text: 'Each of the 12 badges asks for more push‑ups in one day.',
     elite: true,
-    pic: { img: 'rank-icons', sizes: [428, 642], x: 24, y: 326, w: 214, alt: 'The icons of the 12 badges.' },
+    pic: { img: 'rank-icons', sizes: [428, 642], x: 24, y: 326, w: 214, alt: 'The icons of the 12 badges, from Rookie to Emperor.' },
   },
   {
     title: ['Share every', 'badge'],
     text: 'Each one comes as a picture with your numbers on it.',
     elite: false,
-    pic: { img: 'share-badge', sizes: [409, 614], x: 28.78, y: 197.65, w: 204.47, alt: 'A badge picture ready to share.' },
+    pic: { img: 'share-badge', sizes: [409, 614], x: 28.78, y: 197.65, w: 204.47, alt: 'A badge picture to share: Centurion, earned on November 7, 2026, with 100 push-ups in 8 minutes 20 seconds.' },
   },
 ];
 
@@ -88,7 +89,9 @@ const facts = [
 
 const questions = [faq.account, faq.camera, faq.apps, faq.intensity, faq.cancel, faq.android];
 
-const srcset = (img: string, sizes: number[]) => sizes.map((s) => `/img/${img}-${s}.webp ${s}w`).join(', ');
+const srcset = (img: string, sizes: number[], ext = 'webp') =>
+  sizes.map((s) => `/img/${img}-${s}.${ext} ${s}w`).join(', ');
+const heroAlt = 'An iPhone showing PumpToUnlock’s lock screen: Instagram is locked, do 10 push-ups to earn 5 minutes.';
 
 const jsonLd = [
   {
@@ -129,14 +132,6 @@ const jsonLd = [
         else if (h === '#contact') location.replace('/support/');
       })();
     </script>
-    <link
-      rel="preload"
-      as="image"
-      href="/img/hero-phone-2001.webp"
-      imagesrcset={srcset('hero-phone', [1000, 2001])}
-      imagesizes="1000px"
-      media="(min-width: 900px)"
-    />
   </Fragment>
 
   <header class="top top--home grid-bg">
@@ -151,39 +146,51 @@ const jsonLd = [
         <div class="download">
           <div class="download__row">
             <AppStoreBadge />
-            <img
+            <Pic
               class="download__wreath"
-              src="/img/wreath-386.webp"
-              srcset={srcset('wreath', [386, 771])}
+              name="wreath"
+              widths={[386, 771]}
               sizes="193px"
-              width="193"
-              height="164"
+              width={193}
+              height={164}
+              lazy={false}
               alt="Loved by 1,000+ people"
             />
           </div>
           <p class="t-small">{site.downloadLine}</p>
         </div>
       </div>
-      <img
-        class="hero__phone"
-        src="/img/hero-phone-2001.webp"
-        srcset={srcset('hero-phone', [1000, 2001])}
-        sizes="1000px"
-        width="2001"
-        height="1488"
-        alt="An iPhone showing the PumpToUnlock lock screen over a blocked app."
-      />
-    </div>
-    <div class="hero__phone-m">
-      <img
-        src="/img/hero-phone-mobile-1193.webp"
-        srcset={srcset('hero-phone-mobile', [1193, 1790])}
-        sizes="597px"
-        width="1790"
-        height="1332"
-        loading="lazy"
-        alt="An iPhone showing the PumpToUnlock lock screen over a blocked app."
-      />
+      {/* One picture, two crops: only the one that fits the screen is downloaded. */}
+      <div class="hero__art">
+        <picture>
+          <source
+            media="(max-width: 899px)"
+            type="image/avif"
+            srcset={srcset('hero-phone-mobile', [1193, 1790], 'avif')}
+            sizes="596px"
+            width="1790"
+            height="1332"
+          />
+          <source
+            media="(max-width: 899px)"
+            srcset={srcset('hero-phone-mobile', [1193, 1790])}
+            sizes="596px"
+            width="1790"
+            height="1332"
+          />
+          <source type="image/avif" srcset={srcset('hero-phone', [1000, 2001], 'avif')} sizes="1000px" />
+          <img
+            class="hero__phone"
+            src="/img/hero-phone-2001.webp"
+            srcset={srcset('hero-phone', [1000, 2001])}
+            sizes="1000px"
+            width="2001"
+            height="1488"
+            alt={heroAlt}
+            fetchpriority="high"
+          />
+        </picture>
+      </div>
     </div>
   </header>
 
@@ -195,13 +202,12 @@ const jsonLd = [
           steps.map((step, i) => (
             <li class="step">
               <div class="step__phone" style={`--h:${step.h}px;--x:${step.x}px;--y:${step.y}px;--w:${step.w}px`}>
-                <img
-                  src={`/img/${step.img}-${step.sizes[0]}.webp`}
-                  srcset={srcset(step.img, step.sizes)}
-                  sizes="345px"
+                <Pic
+                  name={step.img}
+                  widths={step.sizes}
+                  sizes={`${Math.floor(step.w)}px`}
                   width={step.px[0]}
                   height={step.px[1]}
-                  loading="lazy"
                   alt={step.alt}
                 />
               </div>
@@ -233,13 +239,12 @@ const jsonLd = [
               </h3>
               <p class="t-body">{card.text}</p>
               {card.elite && <p class="t-label card__elite">Elite</p>}
-              <img
+              <Pic
                 class="card__pic"
                 style={`--x:${card.pic.x}px;--y:${card.pic.y}px;--w:${card.pic.w}px`}
-                src={`/img/${card.pic.img}-${card.pic.sizes[0]}.webp`}
-                srcset={srcset(card.pic.img, card.pic.sizes)}
-                sizes={`${Math.ceil(card.pic.w)}px`}
-                loading="lazy"
+                name={card.pic.img}
+                widths={card.pic.sizes}
+                sizes={`${Math.floor(card.pic.w)}px`}
                 alt={card.pic.alt}
               />
             </li>
@@ -290,7 +295,8 @@ const jsonLd = [
         width="88"
         height="88"
         loading="lazy"
-        alt=""
+        decoding="async"
+        alt="The PumpToUnlock app icon: a kettlebell with a keyhole."
       />
       <p class="t-h2 closing__tagline">
         Do push-ups. <span class="m-br"></span>Earn minutes.<br />Unlock your apps.
