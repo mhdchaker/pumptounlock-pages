@@ -1,0 +1,47 @@
+---
+import Logo from './Logo.astro';
+import AppStoreBadge from './AppStoreBadge.astro';
+import LanguageButton from './LanguageButton.astro';
+import { nav } from '../data/site';
+import { getPosts } from '../data/posts';
+
+// The Blog link appears once there is an article to read.
+const hasPosts = (await getPosts()).length > 0;
+const links = nav.filter((l) => !l.blog || hasPosts);
+---
+
+<nav class="nav wrap" aria-label="Main" data-nav>
+  <Logo />
+  <div class="nav__links t-nav">
+    {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    <LanguageButton />
+  </div>
+  <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-panel" data-nav-toggle>
+    <span class="sr-only">Menu</span>
+    <img class="icon-menu" src="/icons/menu.svg" width="24" height="24" alt="" />
+    <img class="icon-x" src="/icons/x.svg" width="24" height="24" alt="" />
+  </button>
+  <div class="nav__panel" id="nav-panel">
+    <div class="nav__panel-links t-question">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </div>
+    <div class="nav__panel-foot">
+      <LanguageButton />
+      <AppStoreBadge />
+    </div>
+  </div>
+</nav>
+
+<script>
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  const toggle = nav?.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+  const setOpen = (open: boolean) => {
+    nav?.classList.toggle('nav--open', open);
+    toggle?.setAttribute('aria-expanded', String(open));
+  };
+  toggle?.addEventListener('click', () => setOpen(!nav?.classList.contains('nav--open')));
+  nav?.querySelectorAll('.nav__panel a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+</script>

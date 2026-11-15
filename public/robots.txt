@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pumptounlock.com/sitemap-index.xml

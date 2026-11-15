@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import PageTop from '../components/PageTop.astro';
+import { site } from '../data/site';
+---
+
+<Base
+  title="Terms of Use | PumpToUnlock"
+  description="PumpToUnlock uses Apple’s standard license agreement for apps (EULA) as its Terms of Use."
+>
+  <PageTop title="Terms of Use" />
+  <main class="content wrap">
+    <div class="terms">
+      <p class="t-lead ink">
+        PumpToUnlock uses Apple’s standard license agreement for apps (EULA) as its Terms of Use.
+      </p>
+      <a class="terms__link t-question" href={site.eulaUrl} target="_blank" rel="noopener">
+        <span>Apple’s standard license agreement (EULA)</span>
+        <img src="/icons/external.svg" width="18" height="18" alt="Opens in a new tab" />
+      </a>
+      <p class="t-body">
+        For a question about these terms, write to <a class="link" href={`mailto:${site.email}`}>{site.email}</a>.
+      </p>
+    </div>
+  </main>
+</Base>

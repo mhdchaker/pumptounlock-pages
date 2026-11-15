@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import PageTop from '../components/PageTop.astro';
+import Faq from '../components/Faq.astro';
+import { faq, site } from '../data/site';
+
+const sub = 'Questions, feedback, or a bug to report? We read every message and reply within 2 business days.';
+const questions = [
+  { ...faq.counting, open: true },
+  { ...faq.locking, open: true },
+  { ...faq.cancel, open: false },
+  { ...faq.account, open: false },
+];
+const bugReport = [
+  'Your iPhone model',
+  'Your iOS version',
+  'The app version',
+  'A short description of the problem and the steps to reproduce it',
+];
+---
+
+<Base title="Support | PumpToUnlock" description={sub}>
+  <PageTop title="Support" sub={sub} />
+  <main class="content wrap">
+    <div class="columns">
+      <div class="support__left">
+        <section class="email-card">
+          <h2 class="t-title">Email us</h2>
+          <p class="t-body">
+            Send your message to <a class="link" href={`mailto:${site.email}`}>{site.email}</a>.
+          </p>
+          <a class="button-ink" href={`mailto:${site.email}?subject=PumpToUnlock%20Support`}>
+            <img src="/icons/mail.svg" width="20" height="20" alt="" />
+            Write an email
+          </a>
+        </section>
+        <section class="help">
+          <h2 class="t-title">Help us help you</h2>
+          <p class="t-body">For bug reports, please include:</p>
+          <ul class="bullets t-body">
+            {bugReport.map((line) => <li>{line}</li>)}
+          </ul>
+        </section>
+      </div>
+      <section class="support__right">
+        <h2 class="t-title">Common questions</h2>
+        {questions.map((item) => <Faq q={item.q} a={item.a} open={item.open} />)}
+      </section>
+    </div>
+  </main>
+</Base>

@@ -1,0 +1,38 @@
+---
+import Logo from './Logo.astro';
+import LanguageButton from './LanguageButton.astro';
+import { footerLinks, site } from '../data/site';
+import { getPosts } from '../data/posts';
+
+const hasPosts = (await getPosts()).length > 0;
+const links = footerLinks.filter((l) => !l.blog || hasPosts);
+// On a phone the legal links start their own line, as drawn.
+const isLegal = (href: string) => href === '/privacy/' || href === '/terms/';
+const main = links.filter((l) => !isLegal(l.href));
+const legal = links.filter((l) => isLegal(l.href));
+const year = new Date().getFullYear();
+---
+
+<footer class="footer wrap">
+  <div class="footer__row">
+    <Logo />
+    <nav class="footer__links t-nav" aria-label="Footer">
+      <span class="footer__group">{main.map((l) => <a href={l.href}>{l.label}</a>)}</span>
+      <span class="footer__group">{legal.map((l) => <a href={l.href}>{l.label}</a>)}</span>
+    </nav>
+  </div>
+  <div class="footer__rule"></div>
+  <div class="footer__legal">
+    <p class="t-small">© {year} {site.name}. All rights reserved.</p>
+    <LanguageButton up />
+  </div>
+  <p class="t-small footer__credit">
+    The 3D iPhone on this site and in our App Store images comes from <a
+      href={site.mockup.url}
+      target="_blank"
+      rel="noopener">{site.mockup.name}</a
+    > by Gregory Riaguzov, licensed under <a href={site.mockup.licenseUrl} target="_blank" rel="noopener"
+      >{site.mockup.licenseName}</a
+    >. We put our app’s screen into it, turned it and cropped it.
+  </p>
+</footer>

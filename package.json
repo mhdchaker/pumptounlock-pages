@@ -1,0 +1,21 @@
+{
+  "name": "pumptounlock-site",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
+    "prepublish-check": "node scripts/prepublish-check.mjs",
+    "check-links": "node scripts/check-links.mjs",
+    "publish-site": "bash scripts/publish.sh"
+  },
+  "dependencies": {
+    "@astrojs/markdown-remark": "^7.3.9",
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.5",
+    "@fontsource-variable/archivo": "^5.3.0",
+    "astro": "^7.4.12"
+  }
+}

@@ -1,0 +1,17 @@
+---
+interface Props {
+  q: string;
+  a: string;
+  open?: boolean;
+}
+const { q, a, open = false } = Astro.props;
+---
+
+<details class="faq" open={open}>
+  <summary class="faq__q t-question">
+    {q}
+    <img class="faq__icon faq__icon--plus" src="/icons/plus.svg" width="17" height="20" alt="" />
+    <img class="faq__icon faq__icon--minus" src="/icons/minus.svg" width="17" height="20" alt="" />
+  </summary>
+  <p class="faq__a t-body">{a}</p>
+</details>
