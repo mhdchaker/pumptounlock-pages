@@ -24,6 +24,17 @@ if (published.length && /blogAuthor:\s*\{[^}]*decided:\s*false/.test(site)) {
   );
 }
 
+for (const file of ['privacy-body.html', 'privacy-meta.json']) {
+  const legal = readFileSync(new URL(`../src/content/legal/${file}`, import.meta.url), 'utf8');
+  if (legal.includes('PUBLISH-DATE')) {
+    problems.push(
+      `The privacy policy still says PUBLISH-DATE (src/content/legal/${file}). ` +
+        'Put in the day it goes live, written like "November 13, 2026". ' +
+        'It goes live together with the app version that contains the Meta SDK, not before.',
+    );
+  }
+}
+
 if (problems.length) {
   console.error('Not ready to go live:\n- ' + problems.join('\n- '));
   process.exit(1);
